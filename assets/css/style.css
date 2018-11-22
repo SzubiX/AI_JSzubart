@@ -4,3 +4,13 @@
 	margin:3px 0;
 	display: block;
 }
+
+.navbar a {
+    font-size: 15;
+    padding:10px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.titles{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
