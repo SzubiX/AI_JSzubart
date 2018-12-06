@@ -9,7 +9,7 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary"> 
 		<div class = "container">
-			<font size= "5" face="Comic Sans MS" ><span class = navbar-brand"><img src="<?php echo base_url('assets/img/basketball.png'); ?>" width="90" height="60"> On Fire - Basketball Development </span></font>
+			<font size= "4" face="Comic Sans MS" ><span class = navbar-brand"><img src="<?php echo base_url('assets/img/basketball.png'); ?>" width="90" height="60"> On Fire - Basketball Development </span></font>
 		
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav mx-auto">
@@ -19,13 +19,24 @@
 				<a href="<?php echo base_url(); ?>about">O nas</a></li>   
 			<li class="list-inline-item">
 				<a href="<?php echo base_url(); ?>posts">Blog</a></li>
+			<?php if($this->session->userdata('logged_in')) : ?>
 			<li class="list-inline-item">
 				<a href="<?php echo base_url(); ?>posts/create"> Utwórz Wpis</a></li>
-			</ul>
-		</div>
-		<div class = "nav navbar-nav navber-right">
+			<?php endif; ?>	
+			</ul><br>
+		</div> 
+		<div class = "nav navbar-nav navbar-right">
+
+			<?php if(!$this->session->userdata('logged_in')) : ?>
+			<li class="list-inline-item">
+				<a href="<?php echo base_url(); ?>users/login">Zaloguj się</a></li>
 			<li class="list-inline-item">
 				<a href="<?php echo base_url(); ?>users/register">Zarejestruj się</a></li>
+			<?php endif; ?>	
+			<?php if($this->session->userdata('logged_in')) : ?>
+			<li class="list-inline-item">
+				<a href="<?php echo base_url(); ?>users/logout">Wyloguj się</a></li>
+				<?php endif; ?>	
 		</div></strong>
 
 
@@ -48,8 +59,21 @@
 		<?php echo '<p class="alert alert-success">'.$this->session->flashdata('post_updated').'</p>'; ?>
 	<?php endif; ?>
 
-		<?php if($this->session->flashdata('post_deleted')): ?>
+	<?php if($this->session->flashdata('post_deleted')): ?>
 		<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('post_deleted').'</p>'; ?>
 	<?php endif; ?>
+
+	<?php if($this->session->flashdata('login_failed')): ?>
+		<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+	<?php endif; ?>
+
+	<?php if($this->session->flashdata('user_loggedin')): ?>
+		<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+	<?php endif; ?>
+
+	<?php if($this->session->flashdata('user_loggedout')): ?>
+		<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+	<?php endif; ?>
+
 
 

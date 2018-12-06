@@ -18,14 +18,15 @@
 
 
 			public function create_post(){
-				//problem przy polskich znakach
-				$slug = url_title($this->input->post('title'));
+				
+				$slug = convert_accented_characters(url_title($this->input->post('title')));
 
 				$data = array(
 					'title' => $this->input->post('title'), 
 					'slug' => $slug,
 					'body' => $this->input->post('body'),
-					'category_id' => $this->input->post('category_id')
+					'category_id' => $this->input->post('category_id'),
+					'user_id' => $this->session->userdata('user_id')
 				);
 
 				return $this->db->insert('post',$data);
