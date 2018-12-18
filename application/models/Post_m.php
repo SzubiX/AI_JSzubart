@@ -39,7 +39,7 @@
 			}
 
 				public function update_post(){
-				$slug = url_title($this->input->post('title'));
+				$slug = convert_accented_characters(url_title($this->input->post('title')));
 
 				$data = array(
 				'title' => $this->input->post('title'),
